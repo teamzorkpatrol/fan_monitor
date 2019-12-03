@@ -14,7 +14,7 @@ The Macbook Pro's fans set on automatic just plain suck. They doesn't cool worth
 
 Luckily, smcFanControl included smc.c, the source to the awesome program to control the Mac's SMC. With that, I could disable one fan and control the other while checking the temperature.
 
-All I needed to do was to write a BASH script that would keep my Mac cool. That's fan_monitor.
+All I needed to do was to write a BASH script that would keep my Mac cool.
 
 ### Instructions
 
