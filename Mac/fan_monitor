@@ -1,0 +1,113 @@
+#!/bin/bash
+
+
+# M.I.T. License
+# also Beerware. If you like this, have a beer.
+
+# Mac version
+
+# build smc from smcFanControl
+# in the smc-command directory
+# https://github.com/hholtmann/smcFanControl
+
+
+# configuration
+
+# log file
+LOGFILE="/var/log/fan_monitor.log"
+LOGGING=0
+
+# config
+
+SMC="/usr/local/bin/smc"
+
+# list all the fan keys to monitor and pick the highest one
+
+# use iStats
+# https://github.com/Chris911/iStats
+# "gem install iStats"
+# do "istats scan" to list all your keys
+
+KEYS=(TC0P TC1C TC2C TC3C TC4C) 
+
+# temperature ranges
+# if temperature is greater than listed temperature, choose that fan speed
+RANGE=(95 84 70 50 0)
+
+# fan speed ranges; 0 disables the fan
+FAN1=(6200 6000 4000 2000 1000)
+FAN2=(6200 6000 4000 2000 1000)
+
+# 2 second delay
+DELAY=2
+
+# set fans to manual
+/bin/bash -c "$SMC -k \"FS! \" -w 0003"
+
+
+if [[ $LOGGING -eq 1 ]]; then
+	echo "============================" >> $LOGFILE
+        echo $(date) >> $LOGFILE
+	echo "============================" >> $LOGFILE
+fi
+
+function gettemp {
+    local c
+    local hightemp
+    local currtemp
+    
+    hightemp=0
+    
+    for c in ${KEYS[@]}; do
+        currtemp=$(/bin/bash -c "$SMC -k $c -r | cut -f1 -d'.' | cut -f7 -d' '")
+        if [[ $currtemp -gt $hightemp ]]; then
+            hightemp=$currtemp
+        fi
+    done
+    
+    TEMP=$hightemp
+}
+
+function hexthis {
+    local h
+    local d
+    d=$1
+    if [[ $d -ne 0 ]]; then
+        h=$(python -c "print(hex($d << 2).split('x')[1])");
+    else
+        h="0000"
+    fi
+    retval=$h
+}
+
+
+function setfan {
+    hexthis $1
+    /bin/bash -c "$SMC -k F0Tg -w $retval"
+    hexthis $2
+    /bin/bash -c "$SMC -k F1Tg -w $retval"
+}
+
+
+while true; do
+        gettemp
+
+	c=0
+	l=${#RANGE[@]}
+	while [[ $c -lt $l ]]; do
+		t=${RANGE[c]}
+		if [[ $TEMP -gt $t ]]; then
+			one=${FAN1[c]}
+			two=${FAN2[c]}
+			setfan $one $two
+			let "c = $l"
+			if [[ $LOGGING -eq 1 ]]; then
+                            export LC_ALL="C"
+				echo "Time: $(date +%H:%M:%S) / Process: $(ps aux | sort -nrk 3,3 | head -n 1 | cut -f3 -d':' | cut -f2- -d' ') / Current temp: $TEMP / Range temp: $t / Fan1 $one Fan2 $two " >> $LOGFILE
+			fi;
+		else
+		let "c = c + 1";
+	fi
+	done
+sleep $DELAY
+done

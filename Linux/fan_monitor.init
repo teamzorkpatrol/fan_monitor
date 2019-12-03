@@ -1,0 +1,21 @@
+#!/sbin/openrc-run
+command=/usr/local/bin/fan_monitor
+name="fan_monitor Daemon"
+ 
+description="Fan_monitor is a daemon that drinks"
+ 
+depend() {
+use logger
+}
+  
+stop() {
+ebegin "Stopping fan_monitor"
+pkill fan_monitor
+eend
+}
+ 
+start() {
+ebegin "Starting fan_monitor"
+${command} &
+eend $? "Failed to start fan_monitor"
+}

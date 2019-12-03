@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# M.I.T. License
+# also Beerware. If you like this, have a beer.
+
+
+# configuration
+
+# log file
+LOGFILE="/var/log/fan_monitor"
+LOGGING=0
+
+# config
+SENSOR="/sys/devices/platform/coretemp.*/hwmon/hwmon*/temp*_input"
+
+RANGE=(95 84 70 50 0)
+
+FAN1=(6200 6000 4000 2000 1000)
+FAN2=(6200 6000 4000 2000 1000)
+
+# 2 second delay
+DELAY=2
+
+# set both fans to manual
+echo 1 > /sys/devices/platform/applesmc.768/fan1_manual 
+echo 1 > /sys/devices/platform/applesmc.768/fan2_manual 
+
+
+if [[ $LOGGING -eq 1 ]]; then
+	echo "============================" >> $LOGFILE
+        echo $(date) >> $LOGFILE
+	echo "============================" >> $LOGFILE
+fi
+
+function gettemp {
+	#take the highest temperature
+	TEMP=$(($(cat $SENSOR | sort -rg | head -n 1) / 1000))
+}
+
+function setfan {
+    echo $1 > /sys/devices/platform/applesmc.768/fan1_output 
+    echo $2 > /sys/devices/platform/applesmc.768/fan2_output 
+}
+
+
+while [[ `mount | grep /sys` ]]; do
+        gettemp
+
+	c=0
+	l=${#RANGE[@]}
+	while [[ $c -lt $l ]]; do
+		t=${RANGE[c]}
+		if [[ $TEMP -gt $t ]]; then
+			one=${FAN1[c]}
+			two=${FAN2[c]}
+			setfan $one $two
+			let "c = $l"
+			if [[ $LOGGING -eq 1 ]]; then
+				echo Time: $(date +%H:%M:%S) / Process: $(ps aux | sort -nrk 3,3 | head -n 1 | cut -f3 -d':' | cut -f2 -d' ') / Current temp: $TEMP / Range temp: $t / Fan1 $one Fan2 $two >> $LOGFILE
+			fi;
+		else
+		let "c = c + 1";
+	fi
+	done
+sleep $DELAY
+done
