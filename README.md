@@ -43,9 +43,9 @@ If it doesn't work, file a complaint-- or better yet-- _upgrade_ to Devuan or Ar
 
 Edit the fan_control script in your favorite text editor and modify the arrays. The default settings are:
 
-`RANGE=(95 84 70 50 0)
-FAN1=(6200 6000 4000 2000 1000)`
-FAN2=(6200 6000 4000 2000 1000)
+`RANGE=(95 84 70 50 0)`<br>
+`FAN1=(6200 6000 4000 2000 1000)`<br>
+`FAN2=(6200 6000 4000 2000 1000)`<br>
 
 This means that when the temperature hits 95 degrees, it will set Fan1 and Fan2 to 6200 rpm; 84 to 6000 and so on. If you have a fan that makes noise, disable it by changing the speeds to 0. 
 
