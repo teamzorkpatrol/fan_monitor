@@ -71,7 +71,7 @@ This doesn't come in a box, Howard. Try turning your computer on.
 
 Thanks to the mbpfan (https://github.com/linux-on-mac/mbpfan) for showing me the sys variables. I'd still be using it if it had allowed me to disable a fan....
 
-Check out my other adventures in Mac OS X/macOS/Linux/BSD/Beer at http://beerbabesandbsd.wordpress.com
-Follow me on Tumblr if you like pictures of beer: https://beerbabesandbsd.tumblr.com/
-Or if you're a Twit: http://twitter.com/beerbabesandbsd 
-I'm also on MyFace (but not very often): https://www.facebook.com/phil.melendez.562 
+Check out my other adventures in Mac OS X/macOS/Linux/BSD/Beer at http://beerbabesandbsd.wordpress.com<br>
+Follow me on Tumblr if you like pictures of beer: https://beerbabesandbsd.tumblr.com/<br>
+Or if you're a Twit: http://twitter.com/beerbabesandbsd<br>
+I'm also on MyFace (but not very often): https://www.facebook.com/phil.melendez.562<br>
