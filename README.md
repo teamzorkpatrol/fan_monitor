@@ -36,7 +36,6 @@ If it doesn't work, file a complaint-- or better yet-- _upgrade_ to Devuan or Ar
 
 ### Frequently Annoying Questions/Complaints:
 
-
 **1. How do I configure it?**
 
 **Mac OS X/Linux**
@@ -49,6 +48,7 @@ Edit the fan_control script in your favorite text editor and modify the arrays. 
 
 This means that when the temperature hits 95 degrees, it will set Fan1 and Fan2 to 6200 rpm; 84 to 6000 and so on. If you have a fan that makes noise, disable it by changing the speeds to 0. 
 
+<br>
 
 **2. Can I change the temperature keys fan_monitor looks at?**
 
@@ -59,6 +59,8 @@ After you've found all the keys your machine has by doing "istats scan," find th
 **Linux**
 
 Modify the SENSOR variable. 
+
+<br>
 
 **3. Dude! It doesn't work out of the box!**
 
