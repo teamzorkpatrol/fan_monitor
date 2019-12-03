@@ -18,8 +18,8 @@ All I needed to do was to write a BASH script that would keep my Mac cool. That'
 
 ### Instructions
 
-cd Mac (or Linux)
-sudo ./install.sh
+> cd Mac # for OS X, Linux for... uh... Linux
+> sudo ./install.sh
 
 Now reboot your Mac and get a celebratory beer!
 
