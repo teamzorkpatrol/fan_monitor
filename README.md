@@ -54,7 +54,11 @@ This means that when the temperature hits 95 degrees, it will set Fan1 and Fan2 
 
 **Mac OS X**
 
-After you've found all the keys your machine has by doing "istats scan," find the ones you want to add or change by modifying the KEYS array in fan_monitor. 
+Install iStats (https://github.com/Chris911/iStats):
+
+`gem install iStats`
+
+After you've found all the keys your machine has by doing `istats scan`, find the ones you want to add or change by modifying the KEYS array in fan_monitor. 
 
 **Linux**
 
