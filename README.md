@@ -1,4 +1,4 @@
-#fan_monitor 
+# fan_monitor 
 
 **An easily configurable fan monitor/controller for Mac OS X/macOS and Linux**
 
@@ -6,7 +6,7 @@ The problem with modern Macs is that they suck.
 
 They're badly designed with no air holes, fans that never turn on when they should, GPUs that overheat and die, etc. And that's just the hardware.
 
-##Some Background
+## Some Background
 
 Because I needed a laptop with Firewire support, I bought a MacBook Pro 17-inch, Early 2011 (MacBookPro8,3). Little did I know that this MBP had a graphics card that fails when it gets too hot. I found that out when I used MacPorts.
 
@@ -16,7 +16,7 @@ Luckily, smcFanControl included smc.c, the source to the awesome program to cont
 
 All I needed to do was to write a BASH script that would keep my Mac cool. That's fan_monitor.
 
-###Instructions
+### Instructions
 
 cd Mac # for OS X, Linux for... uh... Linux
 sudo ./install.sh
@@ -34,7 +34,7 @@ The init was designed for OpenRC. If you're using systemd, you might be able to 
 If it doesn't work, file a complaint-- or better yet-- _upgrade_ to Devuan or Artix.
 
 
-###Frequently Annoying Questions/Complaints:
+### Frequently Annoying Questions/Complaints:
 
 
 **1. How do I configure it?**
