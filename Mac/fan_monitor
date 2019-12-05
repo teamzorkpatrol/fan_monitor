@@ -36,13 +36,10 @@ RANGE=(95 84 70 50 0)
 
 # fan speed ranges; 0 disables the fan
 FAN1=(6200 6000 4000 2000 1000)
-FAN2=(6200 6000 4000 2000 1000)
+FAN2=(0 0 0 0)
 
 # 2 second delay
 DELAY=2
-
-# set fans to manual
-/bin/bash -c "$SMC -k \"FS! \" -w 0003"
 
 
 if [[ $LOGGING -eq 1 ]]; then
@@ -82,6 +79,8 @@ function hexthis {
 
 
 function setfan {
+    # set fans to manual every time because stupid macOS Foobar sometimes takes over
+    /bin/bash -c "$SMC -k \"FS! \" -w 0003"
     hexthis $1
     /bin/bash -c "$SMC -k F0Tg -w $retval"
     hexthis $2
