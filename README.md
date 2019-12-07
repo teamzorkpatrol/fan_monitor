@@ -1,6 +1,6 @@
 # fan_monitor 
 
-**An easily configurable fan monitor/controller for Mac OS X/macOS and Linux**
+**An easily configurable fan monitor/controller for Mac OS X/macOS and Linux, an alternative to mbpfan and macfanctld**
 
 The problem with modern Macs is that they suck. 
 
