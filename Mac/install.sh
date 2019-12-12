@@ -21,7 +21,28 @@ sudo chmod ugo+rx /usr/local/bin/fan_monitor
 sudo chown root:wheel /usr/local/bin/fan_monitor
 sudo chmod ugo+r /Library/LaunchDaemons/com.beerbabesandbsd.fan_monitor.plist
 sudo chown root:wheel /Library/LaunchDaemons/com.beerbabesandbsd.fan_monitor.plist
-echo Done! Reboot your Mac.
+
+echo 
+
+echo "Note: You will probably need to configure the temp keys for your Mac."
+echo 
+echo "You can do that using iStats or using smc. iStats will give you more information"
+echo "but smc is quicker."
+echo 
+echo "$ gem install iStats"
+echo "$ istats scan"
+echo 
+echo or...
+echo
+echo '$ smc -f grep "  T"'
+echo 
+echo The keys beginning TC and TG are for your CPU and GPU respectively.
+echo Find the keys you want then edit fan_monitor and replace them in the KEYS variable.
+echo 
+echo $ sudo vim /usr/local/bin/fan_monitor
+echo
+
+echo "Reboot your Mac when you're finished configuring."
 
 else
     echo "This script is for Mac OS X, Howard."
