@@ -19,7 +19,7 @@ All I needed to do was to write a BASH script that would keep my Mac cool.
 ### Instructions
 
 ` cd Mac # for OS X, Linux for... uh... Linux` <br>
-` sudo ./install.sh`
+` sudo sh ./install.sh`
 
 Now reboot your Mac and get a celebratory beer!
 
