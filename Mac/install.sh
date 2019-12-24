@@ -19,7 +19,7 @@ sudo cp fan_monitor /usr/local/bin/
 sudo cp com.beerbabesandbsd.fan_monitor.plist /Library/LaunchDaemons/
 sudo chmod ugo+rx /usr/local/bin/fan_monitor
 sudo chown root:wheel /usr/local/bin/fan_monitor
-sudo chmod ugo+r /Library/LaunchDaemons/com.beerbabesandbsd.fan_monitor.plist
+sudo chmod ugo+r-x /Library/LaunchDaemons/com.beerbabesandbsd.fan_monitor.plist
 sudo chown root:wheel /Library/LaunchDaemons/com.beerbabesandbsd.fan_monitor.plist
 
 echo 
@@ -34,10 +34,14 @@ echo "$ istats scan"
 echo 
 echo or...
 echo
-echo '$ smc -f grep "  T"'
+echo '$ smc -l | grep "  T"'
 echo 
 echo The keys beginning TC and TG are for your CPU and GPU respectively.
 echo Find the keys you want then edit fan_monitor and replace them in the KEYS variable.
+echo 
+echo Also you may want to modify the setfan function if your machine has only one fan.
+echo Try...
+echo '$ smc -f | grep "  F"'
 echo 
 echo $ sudo vim /usr/local/bin/fan_monitor
 echo
