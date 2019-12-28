@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $(uname | grep Linux) ]]; then
+if `uname | grep -q Linux`; then
 
 echo Installing fan_monitor in /usr/local/bin/...
 sudo cp fan_monitor /usr/local/bin/
@@ -8,7 +8,7 @@ sudo chown root:root /usr/local/bin/fan_monitor
 sudo chmod 0744 /usr/local/bin/fan_monitor
 
 
-if [[ $(sudo which openrc) ]]; then
+if `sudo which openrc`; then
     echo Installing init...
     sudo cp fan_monitor.init /etc/init.d/fan_monitor
     sudo chown root:root /etc/init.d/fan_monitor
